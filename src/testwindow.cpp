@@ -173,6 +173,20 @@ TestWindow::TestWindow(QScreen *targetScreen, QWindow *parent)
                           QColor(128, 128, 128)
                       }, StrokeTest::Angle90, true));
 
+    _tests.append(new StrokeTest(
+                      this,
+                      tr("Stroke Black/White 90°"),{
+                          QColor(255, 255, 255),
+                          QColor(0,   0,   0)
+                      }, StrokeTest::Angle90, false));
+
+    _tests.append(new StrokeTest(
+                      this,
+                      tr("Stroke White/Black 90°"),{
+                          QColor(0,   0,   0),
+                          QColor(255, 255, 255)
+                      }, StrokeTest::Angle90, false));
+
     _currentTestIndex = 0;
     setTest(_currentTestIndex);
 
@@ -399,5 +413,10 @@ void StrokeTest::paintEvent(QPaintEvent *event)
     else if (_angle == Angle135)
     {
         //ToDo
+    }
+
+    if (!_moving)
+    {
+        _currentColorIndex = 0;
     }
 }

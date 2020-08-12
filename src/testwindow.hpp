@@ -122,7 +122,8 @@ public:
     StrokeTest(TestWindow* window, const QString& name, const QList<QColor>& colors, CapabilityAngle angle, bool moving) :
           AbstractTest(window, name, 10000),
           _colors(colors),
-          _angle(angle)
+          _angle(angle),
+          _moving(moving)
     {
         _needAutoUpdate = moving;
     }
@@ -131,6 +132,7 @@ private:
     QList<QColor> _colors;
     int _currentColorIndex = 0;
     CapabilityAngle _angle = Angle0;
+    bool _moving = false;
 };
 
 #endif // TESTWINDOW_HPP
