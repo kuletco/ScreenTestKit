@@ -39,3 +39,33 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 RESOURCES += \
     resources.qrc
+
+win32: {
+    #Подключаем SSL для Windows. Соответствующий модуль должен быть установлён!!!
+
+    contains(QT_ARCH, i386) {
+        #Для Windows x32
+        INCLUDEPATH += $$(QTDIR)/../../Tools/OpenSSL/Win_x86/include
+    } else {
+        #Для Windows x64
+        INCLUDEPATH += $$(QTDIR)/../../Tools/OpenSSL/Win_x64/include
+    }
+
+
+    #Сборка файлов релизной версии
+
+    CONFIG(debug, debug|release) {
+        #debug
+    } else {
+        #release
+        contains(QT_ARCH, i386) {
+            #Для Windows x32
+            DESTDIR = $$_PRO_FILE_PWD_/../release_win32
+        } else {
+            #Для Windows x64
+            DESTDIR = $$_PRO_FILE_PWD_/../release_win64
+        }
+
+        QMAKE_POST_LINK += $$(QTDIR)/bin/windeployqt --release --qmldir $$(QTDIR)/qml $$DESTDIR $$escape_expand(\\n\\t)
+    }
+}
