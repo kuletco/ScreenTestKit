@@ -10,9 +10,7 @@ class TestWindow;
 class AbstractTest
 {
 public:
-    AbstractTest(TestWindow* window, const QString& name, int duration)
-        : _window(window), _name(name), _duration(duration)
-    {
+    AbstractTest(TestWindow* window, const QString& name, int duration) : _window(window), _name(name), _duration(duration) {
         assert(window != nullptr);
     }
     virtual ~AbstractTest() {}
@@ -67,9 +65,7 @@ private:
 class SolidColorTest : public AbstractTest
 {
 public:
-    SolidColorTest(TestWindow* window, const QString& name, const QColor& color) :
-          AbstractTest(window, name, 3000),
-          _color(color) {}
+    SolidColorTest(TestWindow* window, const QString& name, const QColor& color) : AbstractTest(window, name, 3000), _color(color) {}
     void paintEvent(QPaintEvent *event) override;
 private:
     QColor _color = Qt::GlobalColor::red;
@@ -78,10 +74,7 @@ private:
 class BlinkTest : public AbstractTest
 {
 public:
-    BlinkTest(TestWindow* window, const QString& name, const QList<QColor>& colors) :
-          AbstractTest(window, name, 6000),
-          _colors(colors)
-    {
+    BlinkTest(TestWindow* window, const QString& name, const QList<QColor>& colors) : AbstractTest(window, name, 6000), _colors(colors) {
         _needAutoUpdate = true;
     }
     void paintEvent(QPaintEvent *event) override;
@@ -93,11 +86,7 @@ private:
 class FadeTest : public AbstractTest
 {
 public:
-    FadeTest(TestWindow* window, const QString& name, const QList<QColor>& colors, double blendSpeed) :
-          AbstractTest(window, name, 30000),
-          _colors(colors),
-          _blendSpeed(blendSpeed)
-    {
+    FadeTest(TestWindow* window, const QString& name, const QList<QColor>& colors, double blendSpeed) : AbstractTest(window, name, 30000), _colors(colors), _blendSpeed(blendSpeed) {
         _needAutoUpdate = true;
         _currentColor = colors.first();
     }
@@ -119,12 +108,7 @@ public:
         Angle90,
         Angle135
     };
-    StrokeTest(TestWindow* window, const QString& name, const QList<QColor>& colors, CapabilityAngle angle, bool moving) :
-          AbstractTest(window, name, 10000),
-          _colors(colors),
-          _angle(angle),
-          _moving(moving)
-    {
+    StrokeTest(TestWindow* window, const QString& name, const QList<QColor>& colors, CapabilityAngle angle, bool moving) : AbstractTest(window, name, 10000), _colors(colors), _angle(angle), _moving(moving) {
         _needAutoUpdate = moving;
     }
     void paintEvent(QPaintEvent *event) override;

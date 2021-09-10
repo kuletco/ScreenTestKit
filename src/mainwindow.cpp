@@ -6,9 +6,7 @@
 #include <QToolButton>
 #include <QGuiApplication>
 
-MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent)
-    , ui(new Ui::MainWindow)
+MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
 
@@ -27,13 +25,11 @@ void MainWindow::onScreensChanged()
     ui->listWidgetScreens->clear();
     QList<QScreen*> screens = QGuiApplication::screens();
 
-    for (int i = 0; i < screens.count(); ++i)
-    {
+    for (int i = 0; i < screens.count(); ++i) {
         ui->listWidgetScreens->addItem(tr("Display %1").arg(i));
     }
 
-    if (ui->listWidgetScreens->count() > 0 && ui->listWidgetScreens->currentRow() <= -1)
-    {
+    if (ui->listWidgetScreens->count() > 0 && ui->listWidgetScreens->currentRow() <= -1) {
         ui->listWidgetScreens->setCurrentRow(0);
     }
 }
@@ -41,8 +37,7 @@ void MainWindow::onScreensChanged()
 void MainWindow::closeEvent(QCloseEvent *event)
 {
     Q_UNUSED(event)
-    if (_testWindow)
-    {
+    if (_testWindow) {
         _testWindow->close();
     }
 }
@@ -50,27 +45,22 @@ void MainWindow::closeEvent(QCloseEvent *event)
 void MainWindow::keyPressEvent(QKeyEvent *event)
 {
     Q_UNUSED(event)
-    if (_testWindow && _testWindow->isVisible())
-    {
+    if (_testWindow && _testWindow->isVisible()) {
         _testWindow->keyPressEvent(event);
     }
 }
 
 void MainWindow::onTestWindowVisibleChanged(bool arg)
 {
-    if (!arg)
-    {
-        if (sender() == _testWindow)
-        {
+    if (!arg) {
+        if (sender() == _testWindow) {
             delete _testWindow;
             _testWindow = nullptr;
             ui->actionStart->setEnabled(true);
             ui->actionStartSelected->setEnabled(true);
             ui->actionStopTest->setEnabled(false);
 
-        }
-        else
-        {
+        } else {
             qWarning() << Q_FUNC_INFO << ": sender() != _testWindow";
         }
     }
@@ -81,8 +71,7 @@ void MainWindow::onTestChanged(int index, AbstractTest *test)
     Q_UNUSED(index)
     Q_UNUSED(test)
     ui->listWidgetTests->clear();
-    for (int i = 0; i < _testWindow->tests().count(); ++i)
-    {
+    for (int i = 0; i < _testWindow->tests().count(); ++i) {
         const AbstractTest* test = _testWindow->tests().at(i);
         ui->listWidgetTests->addItem(test->name());
     }
@@ -95,13 +84,11 @@ void MainWindow::on_actionStart_triggered()
 {
     QList<QScreen*> screens = QGuiApplication::screens();
     int selectedScreen = 0;
-    if (ui->listWidgetScreens->currentRow() >= 0 && ui->listWidgetScreens->currentRow() <= screens.count())
-    {
+    if (ui->listWidgetScreens->currentRow() >= 0 && ui->listWidgetScreens->currentRow() <= screens.count()) {
         selectedScreen = ui->listWidgetScreens->currentRow();
     }
 
-    if (_testWindow)
-    {
+    if (_testWindow) {
         _testWindow->close();
     }
 
@@ -125,8 +112,7 @@ void MainWindow::on_actionStartSelected_triggered()
 
 void MainWindow::on_actionStopTest_triggered()
 {
-    if (_testWindow)
-    {
+    if (_testWindow) {
         _testWindow->close();
     }
 }

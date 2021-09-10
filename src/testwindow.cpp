@@ -9,11 +9,9 @@ double deg2rad (double degrees) {
     return degrees * 4.0 * atan(1.0) / 180.0;
 }
 
-TestWindow::TestWindow(QScreen *targetScreen, QWindow *parent)
-    : QRasterWindow(parent)
+TestWindow::TestWindow(QScreen *targetScreen, QWindow *parent) : QRasterWindow(parent)
 {
-    if (targetScreen)
-    {
+    if (targetScreen) {
         setScreen(targetScreen);
         _refreshRate = targetScreen->refreshRate();
     }
@@ -213,19 +211,23 @@ void TestWindow::paintEvent(QPaintEvent *event)
 
 void TestWindow::keyPressEvent(QKeyEvent *event)
 {
-    if (event->key() == Qt::Key::Key_Escape)
-    {
+    switch (event->key()) {
+    case Qt::Key::Key_Escape:
         close();
         event->accept();
-    }
-    else if (event->key() == Qt::Key::Key_Right)
-    {
+        break;
+    case Qt::Key::Key_Right:
         nextTest();
         event->accept();
-    }
-    else if (event->key() == Qt::Key::Key_Left)
-    {
+        break;
+    case Qt::Key::Key_Left:
         previousTest();
+        event->accept();
+        break;
+    default:
+        break;
+    }
+}
         event->accept();
     }
 }
@@ -237,8 +239,7 @@ void TestWindow::onTestEnd()
 
 void TestWindow::onNeedUpdate()
 {
-    if (_currentTest->needAutoUpdate())
-    {
+    if (_currentTest->needAutoUpdate()) {
         update();
     }
 }
@@ -256,8 +257,7 @@ void TestWindow::nextTest()
 {
     _currentTestIndex++;
 
-    if (_currentTestIndex > _tests.count() - 1)
-    {
+    if (_currentTestIndex > _tests.count() - 1) {
         _currentTestIndex = 0;
     }
 
@@ -268,8 +268,7 @@ void TestWindow::previousTest()
 {
     _currentTestIndex--;
 
-    if (_currentTestIndex < 0)
-    {
+    if (_currentTestIndex < 0) {
         _currentTestIndex = _tests.count() - 1;
     }
 
@@ -306,8 +305,7 @@ void BlinkTest::paintEvent(QPaintEvent *event)
     painter.drawRect(0, 0, _window->size().width(), _window->size().height());
 
     _currentColorIndex++;
-    if (_currentColorIndex > _colors.count() - 1)
-    {
+    if (_currentColorIndex > _colors.count() - 1) {
         _currentColorIndex = 0;
     }
 }
@@ -317,8 +315,7 @@ void FadeTest::paintEvent(QPaintEvent *event)
     Q_UNUSED(event)
 
     int nextColorIndex = _currentColorIndex + 1;
-    if (nextColorIndex > _colors.count() - 1)
-    {
+    if (nextColorIndex > _colors.count() - 1) {
         nextColorIndex = 0;
     }
 
@@ -337,11 +334,9 @@ void FadeTest::paintEvent(QPaintEvent *event)
     painter.setBrush(QBrush(color, Qt::BrushStyle::SolidPattern));
     painter.drawRect(0, 0, _window->size().width(), _window->size().height());
 
-    if (_blendFactor >= 1.0)
-    {
+    if (_blendFactor >= 1.0) {
         _currentColorIndex++;
-        if (_currentColorIndex > _colors.count() - 1)
-        {
+        if (_currentColorIndex > _colors.count() - 1) {
             _currentColorIndex = 0;
         }
 
@@ -356,67 +351,45 @@ void StrokeTest::paintEvent(QPaintEvent *event)
     float maxSide = fmax(_window->width(), _window->height());
 
     QPainter painter(_window);
-    if (_angle == Angle0)
-    {
-        for (int i = 0; i < _window->height(); ++i)
-        {
+    if (_angle == Angle0) {
+        for (int i = 0; i < _window->height(); ++i) {
             painter.setPen(QPen(_colors[_currentColorIndex]));
 
-            painter.drawLine(0,
-                             i,
-                             _window->width(),
-                             i);
+            painter.drawLine(0, i, _window->width(), i);
 
             _currentColorIndex++;
-            if (_currentColorIndex > _colors.count() - 1)
-            {
+            if (_currentColorIndex > _colors.count() - 1) {
                 _currentColorIndex = 0;
             }
         }
     }
-    if (_angle == Angle45)
-    {
-        for (int i = -maxSide; i < maxSide; ++i)
-        {
+    if (_angle == Angle45) {
+        for (int i = -maxSide; i < maxSide; ++i) {
             painter.setPen(QPen(_colors[_currentColorIndex]));
 
-            painter.drawLine(i,
-                             0,
-                             maxSide + i,
-                             maxSide);
+            painter.drawLine(i, 0, maxSide + i, maxSide);
 
             _currentColorIndex++;
-            if (_currentColorIndex > _colors.count() - 1)
-            {
+            if (_currentColorIndex > _colors.count() - 1) {
                 _currentColorIndex = 0;
             }
         }
-    }
-    else if (_angle == Angle90)
-    {
-        for (int i = 0; i < _window->width(); ++i)
-        {
+    } else if (_angle == Angle90) {
+        for (int i = 0; i < _window->width(); ++i) {
             painter.setPen(QPen(_colors[_currentColorIndex]));
 
-            painter.drawLine(i,
-                             0,
-                             i,
-                             _window->height());
+            painter.drawLine(i, 0, i, _window->height());
 
             _currentColorIndex++;
-            if (_currentColorIndex > _colors.count() - 1)
-            {
+            if (_currentColorIndex > _colors.count() - 1) {
                 _currentColorIndex = 0;
             }
         }
-    }
-    else if (_angle == Angle135)
-    {
+    } else if (_angle == Angle135) {
         //ToDo
     }
 
-    if (!_moving)
-    {
+    if (!_moving) {
         _currentColorIndex = 0;
     }
 }
