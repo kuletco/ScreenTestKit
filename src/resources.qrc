@@ -3,6 +3,8 @@
         <file>resources/images/pause.svg</file>
         <file>resources/images/play.svg</file>
         <file>resources/images/stop-button.svg</file>
+        <file>resources/images/checkbox-checked.svg</file>
+        <file>resources/images/checkbox-unchecked.svg</file>
     </qresource>
     <qresource prefix="/i18n">
         <file alias="zh_CN">ScreenTestKit.zh_CN.qm</file>

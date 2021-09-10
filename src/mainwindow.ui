@@ -41,6 +41,8 @@
    </attribute>
    <addaction name="actionStart"/>
    <addaction name="actionStopTest"/>
+   <addaction name="separator"/>
+   <addaction name="actionLoop"/>
   </widget>
   <action name="actionStart">
    <property name="icon">
@@ -67,6 +69,28 @@
    </property>
    <property name="text">
     <string>Stop</string>
+   </property>
+  </action>
+  <action name="actionLoop">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/resources/images/checkbox-unchecked.svg</normaloff>
+     <normalon>:/resources/images/checkbox-checked.svg</normalon>:/resources/images/checkbox-unchecked.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Loop</string>
+   </property>
+   <property name="toolTip">
+    <string>Loop execution</string>
+   </property>
+   <property name="visible">
+    <bool>true</bool>
    </property>
   </action>
  </widget>
