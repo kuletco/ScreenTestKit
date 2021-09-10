@@ -228,7 +228,16 @@ void TestWindow::keyPressEvent(QKeyEvent *event)
         break;
     }
 }
+
+void TestWindow::mousePressEvent(QMouseEvent *event)
+{
+    switch (event->button()) {
+    case Qt::MouseButton::LeftButton:
+        nextTest();
         event->accept();
+        break;
+    default:
+        break;
     }
 }
 

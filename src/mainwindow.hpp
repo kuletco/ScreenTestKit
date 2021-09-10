@@ -28,6 +28,7 @@ private slots:
 protected:
     void closeEvent(QCloseEvent *event);
     void keyPressEvent(QKeyEvent *event);
+    void mousePressEvent(QMouseEvent *event);
 
 private:
     Ui::MainWindow *ui;

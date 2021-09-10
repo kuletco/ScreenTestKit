@@ -50,6 +50,14 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
     }
 }
 
+void MainWindow::mousePressEvent(QMouseEvent *event)
+{
+    Q_UNUSED(event)
+    if (_testWindow && _testWindow->isVisible()) {
+        _testWindow->mousePressEvent(event);
+    }
+}
+
 void MainWindow::onTestWindowVisibleChanged(bool arg)
 {
     if (!arg) {
