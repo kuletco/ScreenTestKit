@@ -1,0 +1,12 @@
+[Desktop Entry]
+Name=ScreenTestKit
+Name[zh_CN]=屏幕测试工具
+Comment=Screen test kit
+Comment[zh_CN]=屏幕测试工具
+Exec=/usr/bin/ScreenTestKit
+Icon=computer
+Terminal=false
+Type=Application
+StartupNotify=no
+Categories=System;
+Keywords=linux;system;hardware;devices;display;benchmark;test;

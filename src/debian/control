@@ -1,0 +1,14 @@
+Package: screen-test-kit
+Version: VERSION
+Architecture: ARCHITECTURE
+Maintainer: Wang Hong <kuletco@qq.com>
+Installed-Size: 81
+Depends: libc6 (>= 2.4), libqt5core5a, libqt5widgets5, libqt5gui5
+Section: utils
+Priority: optional
+Homepage:
+Description: Utility to test the quality of screens
+ Screen-test-kit is a CRT and LCD screen testing utility. Ever wondered how
+ good the quality (sharpness, linearity, convergence, etc.) of your
+ CRT/LCD monitor is? Screentest displays the testing patterns which you
+ can use to evaluate the quality of your monitor.

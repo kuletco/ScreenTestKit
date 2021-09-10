@@ -10,6 +10,9 @@
     <height>313</height>
    </rect>
   </property>
+  <property name="windowTitle">
+   <string>ScreenTestKit</string>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
     <item row="0" column="0">
@@ -26,6 +29,9 @@
    </property>
    <property name="movable">
     <bool>false</bool>
+   </property>
+   <property name="toolButtonStyle">
+    <enum>Qt::ToolButtonTextBesideIcon</enum>
    </property>
    <attribute name="toolBarArea">
     <enum>TopToolBarArea</enum>
@@ -60,7 +66,7 @@
      <normaloff>:/resources/images/stop-button.svg</normaloff>:/resources/images/stop-button.svg</iconset>
    </property>
    <property name="text">
-    <string>Stop Test</string>
+    <string>Stop</string>
    </property>
   </action>
  </widget>
