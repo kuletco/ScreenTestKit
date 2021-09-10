@@ -196,9 +196,8 @@ TestWindow::TestWindow(QScreen *targetScreen, QWindow *parent) : QRasterWindow(p
 
 TestWindow::~TestWindow()
 {
-    for (AbstractTest* test : _tests)
-    {
-        delete test;
+    while (!_tests.isEmpty()) {
+        delete _tests.takeFirst();
     }
     _tests.clear();
 }
