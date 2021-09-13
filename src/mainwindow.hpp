@@ -2,6 +2,7 @@
 #define MAINWINDOW_HPP
 
 #include <QMainWindow>
+#include <QPointer>
 #include "testwindow.hpp"
 
 QT_BEGIN_NAMESPACE
@@ -17,9 +18,11 @@ public:
     ~MainWindow();
 
 private slots:
+    void UpdateTestList();
     void onScreensChanged();
     void onTestWindowVisibleChanged(bool arg);
-    void onTestChanged(int index, AbstractTest* test);
+    void onTestChanged(int index, const AbstractTest *test);
+    void onTestStopped(int index);
 
     void on_actionStart_triggered();
     void on_actionStartSelected_triggered();
@@ -34,7 +37,8 @@ protected:
 
 private:
     Ui::MainWindow *ui;
-    TestWindow* _testWindow = nullptr;
+    TestWindow* _testWindow;
+    int _selectedScreen = 0;
     bool _loop = false;
     bool _autonext = false;
 };

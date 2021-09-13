@@ -13,14 +13,14 @@ public:
     AbstractTest(TestWindow* window, const QString& name, int duration) : _window(window), _name(name), _duration(duration) {
         assert(window != nullptr);
     }
-    virtual ~AbstractTest() {}
+    virtual ~AbstractTest() { _window = nullptr; }
     virtual void paintEvent(QPaintEvent *event) = 0;
     QString name()        const { return _name; }
     int duration()        const { return _duration; }
     bool needAutoUpdate() const { return _needAutoUpdate; }
 
 protected:
-    TestWindow* _window = nullptr;
+    TestWindow* _window;
     QString _name;
     int _duration = 3000;
     bool _needAutoUpdate = false;
@@ -34,8 +34,13 @@ public:
     friend class MainWindow;
     explicit TestWindow(QScreen *targetScreen = nullptr, QWindow *parent = nullptr);
     ~TestWindow();
-    QList<AbstractTest *> tests() const;
-    int currentTestIndex() const;
+    void initTests();
+    void setTestScreen(QScreen *screen);
+    void startTests(int index = 0);
+    void stopTest();
+
+    QList<AbstractTest*> tests() const { return _tests; };
+    int currentTestIndex() const { return _currentTestIndex; };
     void setTest(int index);
 
     void setLoop(bool loop) { _loop = loop; }
@@ -51,7 +56,8 @@ public:
     }
 
 signals:
-    void currentTestChanged(int index, AbstractTest* test);
+    void currentTestChanged(int index, const AbstractTest* test);
+    void testStopped(int index);
 
 protected:
     void paintEvent(QPaintEvent *event);
@@ -63,13 +69,13 @@ private slots:
     void onNeedUpdate();
 
 private:
-    void nextTest();
-    void previousTest();
+    bool nextTest();
+    bool previousTest();
 
     bool _loop = false;
     bool _autonext = false;
     int _currentTestIndex = 0;
-    AbstractTest* _currentTest = nullptr;
+    AbstractTest* _currentTest;
     QList<AbstractTest*> _tests;
     QTimer _timerNextTest;
 

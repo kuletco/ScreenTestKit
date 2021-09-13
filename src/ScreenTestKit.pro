@@ -1,7 +1,7 @@
 
 TEMPLATE = app
 TARGET = ScreenTestKit
-VERSION = 1.0.0
+VERSION = 1.0.1
 
 QT += core gui
 
