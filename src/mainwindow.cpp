@@ -101,6 +101,8 @@ void MainWindow::on_actionStart_triggered()
     }
 
     _testWindow = new TestWindow(screens[selectedScreen]);
+    on_actionLoop_triggered();
+    on_actionAutoNext_triggered();
 
     connect(_testWindow, &TestWindow::visibleChanged,     this, &MainWindow::onTestWindowVisibleChanged);
     connect(_testWindow, &TestWindow::currentTestChanged, this, &MainWindow::onTestChanged);
@@ -122,5 +124,21 @@ void MainWindow::on_actionStopTest_triggered()
 {
     if (_testWindow) {
         _testWindow->close();
+    }
+}
+
+void MainWindow::on_actionLoop_triggered()
+{
+    _loop = ui->actionLoop->isChecked();
+    if (_testWindow && _testWindow->isVisible()) {
+        _testWindow->setLoop(_loop);
+    }
+}
+
+void MainWindow::on_actionAutoNext_triggered()
+{
+    _autonext = ui->actionAutoNext->isChecked();
+    if (_testWindow && _testWindow->isVisible()) {
+        _testWindow->setAutoNext(_autonext);
     }
 }

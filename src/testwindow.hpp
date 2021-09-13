@@ -38,6 +38,18 @@ public:
     int currentTestIndex() const;
     void setTest(int index);
 
+    void setLoop(bool loop) { _loop = loop; }
+    void setAutoNext(bool autonext) {
+        _autonext = autonext;
+        if (_timerNextTest.isActive()) {
+            if (_autonext) {
+                _timerNextTest.start(_currentTest->duration());
+            } else {
+                _timerNextTest.stop();
+            }
+        }
+    }
+
 signals:
     void currentTestChanged(int index, AbstractTest* test);
 
@@ -54,6 +66,8 @@ private:
     void nextTest();
     void previousTest();
 
+    bool _loop = false;
+    bool _autonext = false;
     int _currentTestIndex = 0;
     AbstractTest* _currentTest = nullptr;
     QList<AbstractTest*> _tests;

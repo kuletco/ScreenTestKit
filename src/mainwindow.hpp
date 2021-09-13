@@ -24,6 +24,8 @@ private slots:
     void on_actionStart_triggered();
     void on_actionStartSelected_triggered();
     void on_actionStopTest_triggered();
+    void on_actionLoop_triggered();
+    void on_actionAutoNext_triggered();
 
 protected:
     void closeEvent(QCloseEvent *event);
@@ -33,5 +35,7 @@ protected:
 private:
     Ui::MainWindow *ui;
     TestWindow* _testWindow = nullptr;
+    bool _loop = false;
+    bool _autonext = false;
 };
 #endif // MAINWINDOW_HPP

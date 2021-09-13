@@ -242,7 +242,9 @@ void TestWindow::mousePressEvent(QMouseEvent *event)
 
 void TestWindow::onTestEnd()
 {
-    nextTest();
+    if (_autonext) {
+        nextTest();
+    }
 }
 
 void TestWindow::onNeedUpdate()
@@ -257,7 +259,9 @@ void TestWindow::setTest(int index)
     _currentTestIndex = index;
     _currentTest      = _tests[index];
     update();
-    _timerNextTest.start(_currentTest->duration());
+    if (_autonext) {
+        _timerNextTest.start(_currentTest->duration());
+    }
     emit currentTestChanged(_currentTestIndex, _currentTest);
 }
 
@@ -265,7 +269,7 @@ void TestWindow::nextTest()
 {
     _currentTestIndex++;
 
-    if (_currentTestIndex > _tests.count() - 1) {
+    if (_loop && _currentTestIndex > _tests.count() - 1) {
         _currentTestIndex = 0;
     }
 
@@ -276,7 +280,7 @@ void TestWindow::previousTest()
 {
     _currentTestIndex--;
 
-    if (_currentTestIndex < 0) {
+    if (_loop && _currentTestIndex < 0) {
         _currentTestIndex = _tests.count() - 1;
     }
 

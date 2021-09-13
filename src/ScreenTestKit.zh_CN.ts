@@ -14,29 +14,39 @@
         <translation>工具栏</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="53"/>
+        <location filename="mainwindow.ui" line="54"/>
         <source>Start</source>
         <translation>开始</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="62"/>
+        <location filename="mainwindow.ui" line="63"/>
         <source>Start from Selected</source>
         <translation>从选中项开始</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="71"/>
+        <location filename="mainwindow.ui" line="72"/>
         <source>Stop</source>
         <translation>停止</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="87"/>
+        <location filename="mainwindow.ui" line="88"/>
         <source>Loop</source>
         <translation>循环</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="90"/>
+        <location filename="mainwindow.ui" line="91"/>
         <source>Loop execution</source>
         <translation>循环执行测试</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="107"/>
+        <source>Auto Next</source>
+        <translation>自动下一个</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="110"/>
+        <source>Auto Next Test</source>
+        <translation>自动开始下一个测试</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="29"/>
