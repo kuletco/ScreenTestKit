@@ -15,13 +15,12 @@ void LoadTranslatFile(const QStringList &translator_files)
     if (!translator_files.isEmpty()) {
         for (const QString &translator_file : qAsConst(translator_files)) {
             QPointer<QTranslator>translator = new QTranslator();
-            qDebug().noquote() << "translator_file:" << translator_file;
             if (translator->load(translator_file)) {
                 if (!qApp->installTranslator(translator)) {
                     qCritical().noquote() << QString("Install translator %1 failed!").arg(translator_file);
                 }
-            } else {
-                qCritical().noquote() << QString("Load Translations %1 failed!").arg(translator_file);
+            //} else {
+            //    qCritical().noquote() << QString("Load Translations %1 failed!").arg(translator_file);
             }
         }
     }
@@ -38,8 +37,8 @@ void InitTranslator(const QStringList &translator_files)
             if (!qApp->installTranslator(translator)) {
                 qCritical().noquote() << QString("Install translator %1 failed!").arg(translator_file);
             }
-        } else {
-            qCritical().noquote() << QString("Load Translations %1 failed!").arg(translator_file);
+        //} else {
+        //    qCritical().noquote() << QString("Load Translations %1 failed!").arg(translator_file);
         }
     }
 
