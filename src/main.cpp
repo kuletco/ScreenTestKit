@@ -61,6 +61,7 @@ int main(int argc, char *argv[])
     QApplication::setApplicationName("ScreenTestKit");
     QApplication::setApplicationVersion(APP_VER);
 
+    QApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     QApplication a(argc, argv);
 
     QStringList translation_files;
