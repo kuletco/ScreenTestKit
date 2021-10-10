@@ -55,8 +55,10 @@ compile_commands.json
 
 /src/.qmake.stash
 /src/ScreenTestKit
+/src/.cache
 /src/.tmp/
 /src/.build_deb
+*.deb
 
 # Users files
 /src/Maintainer
