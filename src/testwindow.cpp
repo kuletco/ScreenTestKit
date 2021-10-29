@@ -210,6 +210,11 @@ bool TestWindow::previousTest()
     return true;
 }
 
+void ContrastTest::paintEvent(QPaintEvent *event)
+{
+    Q_UNUSED(event)
+}
+
 void SolidColorTest::paintEvent(QPaintEvent *event)
 {
     Q_UNUSED(event)

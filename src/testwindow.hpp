@@ -83,6 +83,14 @@ private:
     QTimer _timerRefrashImage;
 };
 
+class ContrastTest : public AbstractTest
+{
+public:
+    ContrastTest(TestWindow * window, const QString &name) : AbstractTest(window, name, 3000) {}
+    void paintEvent(QPaintEvent *event) override;
+private:
+};
+
 class SolidColorTest : public AbstractTest
 {
 public:
