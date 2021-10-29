@@ -54,5 +54,5 @@ UpdateControlValue "Architecture" "$PKG_ARCH"
 [ -f Homepage ] && UpdateControlValue "Homepage" "$(cat Homepage)"
 
 # Build Package
-dpkg-deb -b $BUILD_DIR ${PKG_NAME}_${PKG_VER}_${PKG_ARCH}.deb || exit $?
+fakeroot dpkg-deb -b $BUILD_DIR ${PKG_NAME}_${PKG_VER}_${PKG_ARCH}.deb || exit $?
 rm -rf $BUILD_DIR
